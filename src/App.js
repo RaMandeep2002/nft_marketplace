@@ -1,25 +1,51 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import LoginScreen from './components/LoginScreen';
+import LandingPage from './components/LandingPage';
+const App = () => {
+  const [isMetamaskConnected, setMetamaskConnected] = useState(false);
+  const [walletAddress, setWalletAddress] = useState('');
+  useEffect(() => {
+    addWalletListener();
+  }, [walletAddress]);
+  const handleConnectMetamask = () => {
+    if (typeof window != 'undefined' && typeof window.ethereum != 'undefined') {
+      try {
+        const accounts = window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        setWalletAddress(accounts[0]);
+        setMetamaskConnected(true);
+        // console.log(accounts[0]);
+      } catch (error) {
+        console.error(error.message);
+      }
+    } else {
+      alert('Please Install Metamask!');
+    }
+  };
 
-function App() {
+  const addWalletListener = async () => {
+    if (typeof window != 'undefined' && typeof window.ethereum != 'undefined') {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+      });
+    } else {
+      /* MetaMask is not installed */
+      setWalletAddress('');
+      console.log('Please install MetaMask');
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isMetamaskConnected ? (
+        <LandingPage />
+      ) : (
+        <LoginScreen onConnectMetamask={handleConnectMetamask} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
