@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import CommanNFtCard from './Common/CommanNFtCard';
-
+import CommanNFtCard from './CommanNFtCard';
 
 const TopNft = () => {
   const sampleData = [

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import LoginScreen from './components/LoginScreen';
-import LandingPage from './components/LandingPage';
+import LandingPage from './components/pages/LandingPage';
+import LoginScreen from './components/pages/LoginScreen';
+
 const App = () => {
   const [isMetamaskConnected, setMetamaskConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState('');

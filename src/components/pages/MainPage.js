@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/styling/MainPageStyle.css';
+import '../../components/styling/MainPageStyle.css';
 import { motion } from 'framer-motion';
 
 const MainPage = () => {

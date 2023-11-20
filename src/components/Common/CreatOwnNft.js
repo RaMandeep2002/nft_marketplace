@@ -1,7 +1,10 @@
 import React from 'react';
-import groupImage from '../img/Group.svg';
-import frameImage from '../img/Frame.svg';
-import listImage from '../img/list.svg';
+// import groupImage from '../img/Group.svg';
+// import frameImage from '../img/Frame.svg';
+// import listImage from '../img/list.svg';
+import groupImage from '../../img/Group.svg';
+import frameImage from '../../img/Frame.svg';
+import listImage from '../../img/list.svg';
 
 const CreatOwnNft = () => {
   return (
